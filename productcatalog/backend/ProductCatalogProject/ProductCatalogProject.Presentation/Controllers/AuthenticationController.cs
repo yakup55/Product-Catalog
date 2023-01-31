@@ -26,11 +26,13 @@ namespace ProductCatalogProject.Presentation.Controllers
     {
 
         private readonly IAuthenticationService service;
+        readonly SignInManager<User> _signInManager;
         private readonly IEmailService emailService;
 
-        public AuthenticationController(IAuthenticationService service, IEmailService emailService)
+        public AuthenticationController(IAuthenticationService service, SignInManager<User> signInManager, IEmailService emailService)
         {
             this.service = service;
+            _signInManager = signInManager;
             this.emailService = emailService;
         }
 
@@ -94,6 +96,12 @@ namespace ProductCatalogProject.Presentation.Controllers
 
                 return Ok(userDto);
 
+        }
+        [HttpPost("logOut")]
+        public async Task<IActionResult> LogOut()
+        {
+         await   _signInManager.SignOutAsync();
+            return Ok("Çıkış Başarılı");
         }
        
     }

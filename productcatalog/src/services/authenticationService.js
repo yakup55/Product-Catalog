@@ -19,6 +19,9 @@ class AuthenticationService {
     const url = `${this.baseUrl}/register`;
     return await axios.post(url, register).then((resp) => resp.data);
   }
-  
+  async logOut() {
+    const url = `${this.baseUrl}/logOut`;
+    return await axios.post(url).then((resp) => resp.data);
+  }
 }
 export default AuthenticationService;

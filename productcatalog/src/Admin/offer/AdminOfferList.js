@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { openSnacbar } from "../../redux/actions/appActions";
 import { deleteOffer, getOfferList } from "../../redux/actions/offerActions";
 import DeleteIcon from "@mui/icons-material/Delete";
-import BuildCircleIcon from '@mui/icons-material/BuildCircle';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
+import BuildCircleIcon from "@mui/icons-material/BuildCircle";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 export default function AdminOfferList() {
   const dispacth = useDispatch();
   const navigate = useNavigate();
@@ -33,7 +33,11 @@ export default function AdminOfferList() {
   }, []);
   return (
     <Container maxWidth="md">
-      <Button startIcon={<BorderColorIcon></BorderColorIcon>} variant="contained" onClick={() => navigate("/adminofferadd")}>
+      <Button
+        startIcon={<BorderColorIcon></BorderColorIcon>}
+        variant="contained"
+        onClick={() => navigate("/adminofferadd")}
+      >
         offer Add
       </Button>
       <TableContainer>
@@ -49,17 +53,17 @@ export default function AdminOfferList() {
             </TableRow>
             {offers.map((offer) => (
               <TableRow>
-                <TableCell>{offer.offerId}</TableCell>
-                <TableCell>{offer.offerPrice}</TableCell>
-                <TableCell>{offer.productId}</TableCell>
-                <TableCell>{offer.userId}</TableCell>
+                <TableCell>{offer?.offerId}</TableCell>
+                <TableCell>{offer?.offerPrice}</TableCell>
+                <TableCell>{offer?.productId}</TableCell>
+                <TableCell>{offer?.userId}</TableCell>
                 <TableCell>
                   <Button
-                  startIcon={<BuildCircleIcon></BuildCircleIcon>}
+                    startIcon={<BuildCircleIcon></BuildCircleIcon>}
                     variant="contained"
                     color="success"
                     onClick={() =>
-                      navigate(`/adminupdateoffer/${offer.offerId}`)
+                      navigate(`/adminupdateoffer/${offer?.offerId}`)
                     }
                   >
                     Update
@@ -70,7 +74,7 @@ export default function AdminOfferList() {
                     startIcon={<DeleteIcon></DeleteIcon>}
                     variant="contained"
                     color="error"
-                    onClick={() => handleOfferDeleted(offer.offerId)}
+                    onClick={() => handleOfferDeleted(offer?.offerId)}
                   >
                     Delete
                   </Button>

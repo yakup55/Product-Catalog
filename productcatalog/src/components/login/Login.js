@@ -33,6 +33,7 @@ export default function Login() {
           localStorage.setItem("firstName", resp.firstName);
           localStorage.setItem("lastName", resp.lastName);
           localStorage.setItem("accessToken", resp.accessToken);
+          localStorage.setItem("isLogin",true);
 
           dispacth(
             UserLogin({
@@ -41,6 +42,7 @@ export default function Login() {
               firstName: resp.firstName,
               lastName: resp.lastName,
               accessToken: resp.accessToken,
+              isLogin:true
             })
           );
           navigate("/");

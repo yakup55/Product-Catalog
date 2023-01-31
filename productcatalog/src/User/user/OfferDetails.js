@@ -49,7 +49,9 @@ export default function OfferDetails() {
     );
   };
   return (
-    <Container maxWidth="lg">
+    <div>
+    
+        <Container maxWidth="lg">
       <TableContainer>
         <TableBody>
           <Table>
@@ -62,6 +64,9 @@ export default function OfferDetails() {
               <TableCell>Delete Offer</TableCell>
             </TableRow>
             {offers.map((offer) => (
+             
+
+             
               <TableRow>
                 <TableCell>
                   <img
@@ -94,6 +99,7 @@ export default function OfferDetails() {
                     </Button>
                   </TableCell>
                 )}
+           
                 <TableCell>
                   <Button
                   startIcon={<DeleteIcon></DeleteIcon>}
@@ -106,9 +112,14 @@ export default function OfferDetails() {
                 </TableCell>
               </TableRow>
             ))}
+   
           </Table>
         </TableBody>
       </TableContainer>
     </Container>
+  
+      
+    </div>
+    
   );
 }

@@ -20,13 +20,10 @@ export default function Offers() {
   const dispacth = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { products } = useSelector((state) => state.product);
-  const { offers } = useSelector((state) => state.offer);
-  console.log(user)
   const id = user.userId;
   useEffect(() => {
     dispacth(offerUser(id));
   }, []);
-  console.log(offers);
   const handleproductIsSoldFalse = (id) => {
     dispacth(offerProductIsSoldFalse(id));
     dispacth(
@@ -59,8 +56,7 @@ export default function Offers() {
          Ürünlerim
         </Button>
       <Button startIcon={<BorderColorIcon></BorderColorIcon>} onClick={()=>navigate("/adminaddproduct")} variant="contained" style={{marginTop:10}}>Product Add</Button>
-
-      <TableContainer style={{ marginTop: 10 }}>
+    <TableContainer style={{ marginTop: 10 }}>
        
         <TableBody>
           <Table>
@@ -86,6 +82,7 @@ export default function Offers() {
           </Table>
         </TableBody>
       </TableContainer>
+      
     </Container>
   );
 }

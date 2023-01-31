@@ -28,7 +28,7 @@ import {
 import { useFormik } from "formik";
 import { validationSchema } from "./validationSchema";
 import { addOffer, deleteOffer } from "../../redux/actions/offerActions";
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 export default function ProductDetail() {
   const { id } = useParams();
   const dispacth = useDispatch();
@@ -56,7 +56,7 @@ export default function ProductDetail() {
             severity: "success",
           })
         );
-      //  navigate(`/products/details/${id}`);
+        //  navigate(`/products/details/${id}`);
       },
       validationSchema,
     });
@@ -80,7 +80,6 @@ export default function ProductDetail() {
         severity: "success",
       })
     );
-
   };
   useEffect(() => {
     dispacth(getOneProductDetail(id));
@@ -132,9 +131,6 @@ export default function ProductDetail() {
                   >
                     TEKLİF VERİLDİ
                   </Button>
-                  <Button
-                  onClick={()=>handleOfferDeleted(values.offerId)}
-                  style={{ margin: "auto", display: "block",marginTop:5 }} variant="contained" color="error">Teklifi Sil</Button>
                 </Typography>
               )}
               {product.productOffer === true && (
@@ -203,7 +199,7 @@ export default function ProductDetail() {
             {product.productIsSold === false && (
               <Typography style={{ marginTop: 30 }}>
                 <Button
-                startIcon={<ShoppingBasketIcon></ShoppingBasketIcon>}
+                  startIcon={<ShoppingBasketIcon></ShoppingBasketIcon>}
                   disabled
                   onClick={() => handleAddToCart(product.productId)}
                   color="warning"
@@ -216,7 +212,7 @@ export default function ProductDetail() {
             {product.productIsSold === true && (
               <Typography style={{ marginTop: 30 }}>
                 <Button
-                     startIcon={<ShoppingBasketIcon></ShoppingBasketIcon>}
+                  startIcon={<ShoppingBasketIcon></ShoppingBasketIcon>}
                   onClick={() => handleAddToCart(product.productId)}
                   color="warning"
                   variant="contained"

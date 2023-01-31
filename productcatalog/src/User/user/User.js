@@ -5,6 +5,7 @@ import {
   TableCell,
   TableContainer,
   TableRow,
+  Typography,
 } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useEffect } from "react";
@@ -31,8 +32,8 @@ export default function User() {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const { offers } = useSelector((state) => state.offer);
+  
 
- 
   const handleproductIsSoldFalse = (id) => {
     dispacth(offerProductIsSoldFalse(id));
     dispacth(
@@ -55,14 +56,26 @@ export default function User() {
     );
     navigate("/user");
   };
-  const id=user.userId
+  const id = user.userId;
   useEffect(() => {
     dispacth(offerProduct(id));
   }, []);
   return (
-    <Container maxWidth="md">
-       <Button style={{margin:"auto",display:"block",marginBottom:5}} variant="contained" color="warning">Tekliflerim</Button>
-      <TableContainer>
+ <div>
+{user.isLogin===true&&(
+   <Container maxWidth="md">
+      <Button style={{ marginBottom: 5 }} variant="contained" color="secondary">
+        {user.userName}
+      </Button>
+      <Button
+        style={{ margin: "auto", display: "block", marginBottom: 5 }}
+        variant="contained"
+        color="warning"
+      >
+        Tekliflerim
+      </Button>
+      <div>
+            <TableContainer>
         <TableBody>
           <Table>
             <TableRow>
@@ -90,7 +103,7 @@ export default function User() {
                 </TableCell>
                 <TableCell>
                   <Button
-                  startIcon={<DeleteIcon></DeleteIcon>}
+                    startIcon={<DeleteIcon></DeleteIcon>}
                     variant="contained"
                     color="error"
                     onClick={() => handleOfferDeleted(offer.offerId)}
@@ -103,9 +116,21 @@ export default function User() {
           </Table>
         </TableBody>
       </TableContainer>
-      
-     <Offers></Offers>
-    </Container>
     
+      </div>
+    
+
+      <Offers></Offers>
+    </Container>
+)}
+    
+  {user.isLogin===false&&(
+    <Typography mt={30} variant="h4" align="center">
+      Lütfen Giriş Yapınız Yada Kayıt Olunuz
+    </Typography>
+  )}
+
+ </div>
+   
   );
 }

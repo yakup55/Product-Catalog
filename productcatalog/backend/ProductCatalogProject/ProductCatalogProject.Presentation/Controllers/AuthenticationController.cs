@@ -28,7 +28,7 @@ namespace ProductCatalogProject.Presentation.Controllers
         private readonly IAuthenticationService service;
         readonly SignInManager<User> _signInManager;
         private readonly IEmailService emailService;
-
+        UserDto user=new UserDto();
         public AuthenticationController(IAuthenticationService service, SignInManager<User> signInManager, IEmailService emailService)
         {
             this.service = service;
@@ -60,6 +60,7 @@ namespace ProductCatalogProject.Presentation.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] UserForLoginDto loginDto)
         {
+            user.UserStatus = true;
             if (!await service.ValidateUser(loginDto))
                 return Unauthorized();
 
@@ -90,10 +91,11 @@ namespace ProductCatalogProject.Presentation.Controllers
                     Email = loginDto.Email,
                     UserAccessToken = await service.CreateToken(),
                     UserFirstName = userDetail.FirstName,
-                    UserLastName = userDetail.LastName
-                    
+                    UserLastName = userDetail.LastName,
+                    UserName= userDetail.UserName,
+                    UserStatus=userDetail.UserStatus
                 };
-
+           
                 return Ok(userDto);
 
         }
@@ -101,6 +103,7 @@ namespace ProductCatalogProject.Presentation.Controllers
         public async Task<IActionResult> LogOut()
         {
          await   _signInManager.SignOutAsync();
+            user.UserStatus=false;
             return Ok("Çıkış Başarılı");
         }
        

@@ -2,15 +2,15 @@ import { Button, Stack, TextField } from "@mui/material";
 import { Container } from "@mui/system";
 import { useFormik } from "formik";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { UserRegister } from "../../redux/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import { UserLogin, UserRegister } from "../../redux/actions/userActions";
 import { validationSchema } from "./validationSchema";
 import { openSnacbar } from "../../redux/actions/appActions";
-import AuthenticationService from "../../services/authenticationService";
 import { useNavigate } from "react-router-dom";
 export default function Register() {
   const navigate = useNavigate();
   const dispacth = useDispatch();
+  const { user } = useSelector((state) => state.user);
   const { handleSubmit, handleChange, handleBlur, errors, touched, values } =
     useFormik({
       initialValues: {
@@ -32,6 +32,7 @@ export default function Register() {
         );
         navigate("/");
       },
+
       validationSchema,
     });
   return (

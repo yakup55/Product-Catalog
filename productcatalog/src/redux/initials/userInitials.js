@@ -4,4 +4,5 @@ export const user = {
   firstName: "",
   lastName: "",
   accessToken: "",
+  isLogin:false
 };

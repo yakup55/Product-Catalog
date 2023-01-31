@@ -8,7 +8,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LoginIcon from "@mui/icons-material/Login";
-import { logOut } from "../../redux/actions/userActions";
+import { logOut, UserLogin } from "../../redux/actions/userActions";
 import { openSnacbar } from "../../redux/actions/appActions";
 export default function Navbar() {
   const dispacth = useDispatch();
@@ -16,13 +16,17 @@ export default function Navbar() {
   const navigate = useNavigate();
   const LogOut = () => {
     dispacth(logOut());
+
     dispacth(
       openSnacbar({
         message: "LogOut Success",
         severity: "success",
       })
     );
+
+    navigate("/");
   };
+  console.log(user.isLogin);
   return (
     <nav className={styles.nav}>
       <div className={styles.left}>
@@ -30,7 +34,7 @@ export default function Navbar() {
           <Link onClick={() => navigate("/")}>Product Catalog</Link>
         </div>
       </div>
-      {user.userId === "" && (
+      {user.isLogin === false && (
         <div className={styles.rigth}>
           <Link onClick={() => navigate("/sigin")}>
             <Button startIcon={<LoginIcon></LoginIcon>} variant="contained">
@@ -48,7 +52,7 @@ export default function Navbar() {
         </div>
       )}
 
-      {user.userId !== "" && (
+      {user.isLogin === true && (
         <div className={styles.rigth}>
           {user.userId === "7acde6d7-dff9-45dd-9e0f-d8cdb5eb5560" && (
             <Link onClick={() => navigate("/admin")}>

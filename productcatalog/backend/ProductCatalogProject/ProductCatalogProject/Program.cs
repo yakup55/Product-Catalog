@@ -34,6 +34,15 @@ var configuration = builder.Configuration;
 var emailconfig = configuration.GetSection("EmailConfiguration").Get<EmailDto>();
 builder.Services.AddSingleton(emailconfig);
 
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".AdventureWorks.Session";
+    options.IdleTimeout = TimeSpan.FromSeconds(1800);
+    options.Cookie.IsEssential = true;
+});
+
 
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(ProductCatalogProject.Presentation.AssemblyReference).Assembly)
@@ -56,7 +65,7 @@ app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllers();
 
 app.Run();

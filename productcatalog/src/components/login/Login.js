@@ -1,6 +1,6 @@
 import { Button, Stack, TextField } from "@mui/material";
 import { Container } from "@mui/system";
-import { useFormik, validateYupSchema } from "formik";
+import { useFormik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,8 +12,8 @@ export default function Login() {
   const dispacth = useDispatch();
   const navigate = useNavigate();
   const authenticationService = new AuthenticationService();
-  const { handleSubmit, handleChange, handleBlur, errors, touched, values } =
-    useFormik({
+  const { handleSubmit, handleChange, handleBlur, errors, touched } = useFormik(
+    {
       initialValues: {
         email: "",
         password: "",
@@ -33,7 +33,7 @@ export default function Login() {
           localStorage.setItem("firstName", resp.firstName);
           localStorage.setItem("lastName", resp.lastName);
           localStorage.setItem("accessToken", resp.accessToken);
-          localStorage.setItem("isLogin",true);
+          localStorage.setItem("isLogin", true);
 
           dispacth(
             UserLogin({
@@ -42,7 +42,7 @@ export default function Login() {
               firstName: resp.firstName,
               lastName: resp.lastName,
               accessToken: resp.accessToken,
-              isLogin:true
+              isLogin: true,
             })
           );
           navigate("/");
@@ -58,7 +58,8 @@ export default function Login() {
         }
       },
       validationSchema,
-    });
+    }
+  );
   return (
     <Container>
       <form onSubmit={handleSubmit}>

@@ -35,6 +35,7 @@ export default function AdminOfferAdd() {
       },
       validationSchema,
     });
+    console.log(user.userId)
   useEffect(() => {
     dispacth(getProductList());
   }, []);

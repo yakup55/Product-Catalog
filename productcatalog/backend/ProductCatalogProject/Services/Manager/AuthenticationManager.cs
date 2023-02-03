@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Repositories.Contracts;
 using Services.Service;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace Services.Manager
         private readonly IMapper mapper;
         private readonly IConfiguration configuration;
         private readonly UserManager<User> userManager;
-      
+
         private User? user;
 
         public AuthenticationManager(IMapper mapper, IConfiguration configuration, UserManager<User> userManager)
@@ -51,7 +52,7 @@ namespace Services.Manager
             var user = mapper.Map<User>(registerDto);
             var result = await userManager.CreateAsync(user, registerDto.Password);
             if (result.Succeeded)
-                await userManager.AddToRoleAsync(user,registerDto.role);
+                await userManager.AddToRoleAsync(user, registerDto.role);
             return result;
         }
 
@@ -102,7 +103,7 @@ namespace Services.Manager
 
         public async Task<User> GetOne(string id)
         {
-        return await userManager.FindByIdAsync(id);
+            return await userManager.FindByIdAsync(id);
         }
     }
 }

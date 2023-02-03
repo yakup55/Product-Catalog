@@ -37,6 +37,7 @@ export default function AdminProductList() {
       <Button startIcon={<BorderColorIcon></BorderColorIcon>} variant="contained" onClick={() => navigate("/adminaddproduct")}>
         Add Product
       </Button>
+      <Button style={{marginLeft:10}} startIcon={<BorderColorIcon></BorderColorIcon>} variant="contained" onClick={()=>navigate("/admindetailadd")}>Detail Add</Button>
       <TableContainer>
         <TableBody>
           <TableRow>

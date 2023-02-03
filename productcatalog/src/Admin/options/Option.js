@@ -25,6 +25,9 @@ export default function Option() {
       <ListItem button>
         <ListItemText primary="Product" /><Button onClick={()=>navigate("/adminproductlist")} variant='contained' color='error' startIcon={<PrivacyTipIcon></PrivacyTipIcon>} >Detay</Button>
       </ListItem>
+      <ListItem button>
+        <ListItemText primary="Product Detail" /><Button onClick={()=>navigate("/admindetaillist")} variant='contained' color='error' startIcon={<PrivacyTipIcon></PrivacyTipIcon>} >Detay</Button>
+      </ListItem>
       <Divider />
       <ListItem button divider>
         <ListItemText primary="Category" /><Button onClick={()=>navigate("/admincategorylist")} variant='contained' color='error' startIcon={<PrivacyTipIcon></PrivacyTipIcon>} >Detay</Button>

@@ -21,11 +21,34 @@ namespace ProductCatalogProject.Presentation.Controllers
             this.service = service;
         }
 
+        [HttpGet]
+        public IActionResult GetDetailList()
+        {
+            return Ok(service.GetDetailList()); 
+        }
+
         [HttpPost]
         public IActionResult DetailAdd([FromBody]DetailDto detail)
         {
             service.AddDetail(detail);
             return Ok(detail);
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetOneDetail([FromRoute(Name ="id")]int id)
+        {
+            var one=service.GetOneDetail(id);
+            return Ok(one);
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteDetail([FromRoute(Name ="id")]int id)
+        { 
+            service.DeleteDetail(id);
+            return Ok();
+        }
+        [HttpPut("{id}")]
+        public IActionResult UpdateDetail([FromBody] ProductDetail detail, [FromRoute(Name ="id")]int id)
+        {
+            return Ok(Accepted(service.UpdateDetail(detail, id)));
         }
     }
 }

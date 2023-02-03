@@ -30,7 +30,6 @@ namespace ProductCatalogProject.Presentation.Controllers
         private readonly IAuthenticationService service;
         readonly SignInManager<User> _signInManager;
         private readonly IEmailService emailService;
-        UserDto user=new UserDto();
         public AuthenticationController(IAuthenticationService service, SignInManager<User> signInManager, IEmailService emailService)
         {
             this.service = service;
@@ -62,9 +61,13 @@ namespace ProductCatalogProject.Presentation.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] UserForLoginDto loginDto)
         {
-            user.UserStatus = true;
+            var userDetail = await service.GetOneUser(loginDto.Email);
             if (!await service.ValidateUser(loginDto))
-                return Unauthorized();
+            {
+                    return Unauthorized();
+
+            }
+
 
             //int count = 0;
             //for (int i = 1; i < 4; i++)
@@ -75,7 +78,7 @@ namespace ProductCatalogProject.Presentation.Controllers
             //        count++;
             //    }
             //}
-           
+
             //if (count == 3)
             //{
 
@@ -85,8 +88,9 @@ namespace ProductCatalogProject.Presentation.Controllers
             //    emailService.SendEmail(message);
             //}
 
-                var userDetail = await service.GetOneUser(loginDto.Email);
-           
+
+            if (userDetail.UserStatus == true)
+            {
                 UserDto userDto = new UserDto()
                 {
                     UserId = userDetail.Id,
@@ -94,20 +98,27 @@ namespace ProductCatalogProject.Presentation.Controllers
                     UserAccessToken = await service.CreateToken(),
                     UserFirstName = userDetail.FirstName,
                     UserLastName = userDetail.LastName,
-                    UserName= userDetail.UserName,
-                    UserStatus=userDetail.UserStatus
+                    UserName = userDetail.UserName,
+                    UserStatus = userDetail.UserStatus,
+
+
                 };
-           
+
                 return Ok(userDto);
+            }
+            else if (userDetail.UserStatus == false)
+            {
+                return Ok("Hesabınız Bloke Edilmiştir");
+            }
+            return Ok();
 
         }
         [HttpPost("logOut")]
         public async Task<IActionResult> LogOut()
         {
-         await   _signInManager.SignOutAsync();
-            user.UserStatus=false;
+            await _signInManager.SignOutAsync();
+
             return Ok("Çıkış Başarılı");
         }
-       
     }
 }

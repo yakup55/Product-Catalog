@@ -5,5 +5,6 @@
         public BrandNotFountException(int id) : base($"Brand with {id} could not found")
         {
         }
+  
     }
 }

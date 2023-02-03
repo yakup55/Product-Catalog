@@ -33,6 +33,9 @@ import AdminUsingStatusAdd from "./Admin/usingStatus/AdminUsingStatusAdd";
 import AdminUsingStatusList from "./Admin/usingStatus/AdminUsingStatusList";
 import AdminUpdateUsingStatus from "./Admin/usingStatus/AdminUpdateUsingStatus";
 import Option from "./Admin/options/Option";
+import AdminDetailList from "./Admin/detail/AdminDetailList";
+import AdminDetailAdd from "./Admin/detail/AdminDetailAdd";
+import AdminUpdateDetail from "./Admin/detail/AdminUpdateDetail";
 function App() {
   return (
     <>
@@ -149,6 +152,21 @@ function App() {
             path="/offerdetails/:id"
             element={<OfferDetails></OfferDetails>}
           ></Route>
+
+          {/* ADMIN PRODUCT DETAIL */}
+          <Route
+            path="/admindetaillist"
+            element={<AdminDetailList></AdminDetailList>}
+          ></Route>
+          <Route
+            path="/admindetailadd"
+            element={<AdminDetailAdd></AdminDetailAdd>}
+          ></Route>
+          <Route
+            path="/adminupdatedetail/:id"
+            element={<AdminUpdateDetail></AdminUpdateDetail>}
+          ></Route>
+
           <Route path="/user" element={<User></User>}></Route>
           <Route path="*" element={<Error404></Error404>}></Route>
         </Routes>

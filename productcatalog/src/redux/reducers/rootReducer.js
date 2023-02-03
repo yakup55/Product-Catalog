@@ -8,6 +8,7 @@ import cartReducer from "./cartReducer";
 import usingStatusReducer from "./usingStatusReducer";
 import offerReducer from "./offerReducer";
 import userReducer from "./userReducer";
+import detailReducer from "./detailReducer";
 const rootReducer = combineReducers({
   brand: brandReducer,
   product: productReducer,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   using: usingStatusReducer,
   offer: offerReducer,
-  user:userReducer
+  user: userReducer,
+  detail: detailReducer,
 });
 
 export default rootReducer;

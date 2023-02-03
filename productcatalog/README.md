@@ -15,8 +15,9 @@
 <p>Ürün ekleme sayfası</p>
 <img src="./ProjectsImage/Ekran Görüntüsü (263).png">
 <p>Admin product,category,brand,color,offer,using status gibi kısımları detaylarını görebilir ve detay kısmında update,delete,add gibi işlemleri yapabilir  </p>
-<img src="./ProjectsImage/Ekran Görüntüsü (273).png">
+<img src="./ProjectsImage/Ekran Görüntüsü (286).png">
 <img src="./ProjectsImage/Ekran Görüntüsü (274).png">
+<img src="./ProjectsImage/Ekran Görüntüsü (287).png">
 <img src="./ProjectsImage/Ekran Görüntüsü (280).png">
 <img src="./ProjectsImage/Ekran Görüntüsü (281).png">
 <img src="./ProjectsImage/Ekran Görüntüsü (282).png">
